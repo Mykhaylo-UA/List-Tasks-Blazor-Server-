@@ -1,0 +1,21 @@
+﻿@page "/"
+@using TaskLists.Data;
+@inject TaskLists.Data.ItemService Service
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<h1>Ваш список завдань на сьогодні</h1>
+<button @onclick="SendNot">Sen notification</button>
+<p>@text</p>
+
+@code{
+    private bool text = false;
+
+    private async void SendNot()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        if (user.Identity.Name == null) return;
+        text = await Service.SendNotification(user.Identity.Name);
+    }
+}

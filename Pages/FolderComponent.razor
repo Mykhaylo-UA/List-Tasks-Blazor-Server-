@@ -1,0 +1,43 @@
+﻿@using TaskLists.Data
+@inject TaskLists.Data.ItemService Service
+
+@if (folder.StatusModel == StatusModel.Edit || folder.StatusModel == StatusModel.New)
+{
+    <li>
+        <div class="addFolder">
+            <input @bind="folder.Name" type="text" placeholder="Назва" />
+            <select @bind="folder.Color" class="button button-black" style="background-color: @(folder.Color)">
+                <option value="@Color.Black" style="background-color: black"></option>
+                <option value="@Color.Blue" style="background-color: blue;"></option>
+                <option value="@Color.Green" style="background-color: green;"></option>
+                <option value="@Color.Orange" style="background-color: orange;"></option>
+                <option value="@Color.Pink" style="background-color: pink;"></option>
+                <option value="@Color.Purple" style="background-color: purple;"></option>
+                <option value="@Color.White" style="background-color: white;"></option>
+                <option value="@Color.Yellow" style="background-color: yellow;"></option>
+            </select>
+            <button @onclick="OnClickCallback" class="button button-yellow button-image-revert"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                width="100" height="100"
+                viewBox="0 0 172 172"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M86,6.88c-43.62952,0 -79.12,35.49048 -79.12,79.12c0,43.62952 35.49048,79.12 79.12,79.12c43.62952,0 79.12,-35.49048 79.12,-79.12c0,-43.62952 -35.49048,-79.12 -79.12,-79.12zM110.08,89.44h-20.64v20.64c0,1.90232 -1.53768,3.44 -3.44,3.44c-1.90232,0 -3.44,-1.53768 -3.44,-3.44v-20.64h-20.64c-1.90232,0 -3.44,-1.53768 -3.44,-3.44c0,-1.90232 1.53768,-3.44 3.44,-3.44h20.64v-20.64c0,-1.90232 1.53768,-3.44 3.44,-3.44c1.90232,0 3.44,1.53768 3.44,3.44v20.64h20.64c1.90232,0 3.44,1.53768 3.44,3.44c0,1.90232 -1.53768,3.44 -3.44,3.44z"></path></g></g></svg></button>
+        </div>
+    </li>
+}
+else if (folder.StatusModel == StatusModel.Static)
+{
+    <li style="border: 3px solid @folder.Color">
+        <NavLink class="nav-link" oncontextmenu="return false;" @onmousedown="OnClickCallbackRight" href="@("folder/"+folder.Id)">
+             @folder.Name
+        </NavLink>
+    </li>
+}
+
+@code{
+    [Parameter]
+    public Folder folder { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClickCallbackRight { get; set; }
+}

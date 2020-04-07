@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task List</title>
+
+    <link rel="stylesheet" href="materialize.css">
+
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <div class="toggle-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="logo_header"><a href="#">TogeFun</a></div>
+
+        <div class="authorization">
+            
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li>
+                <a href="#" oncontextmenu="return false;">Сьогодні</a>
+            </li>
+            <li>
+                <a href="#">Сьогодн asd asd ds sdasasd sadasda asd asd sadsadasa sda sdasda asd </a>
+            </li>
+            <li>
+                <a href="#">Сьогодні</a>
+            </li>
+            <li>
+                <a href="#">Сьогодні</a>
+            </li>
+            <li>
+                <div class="addFolder">
+                    <input type="text" placeholder="Назва" />
+                    <select class="button button-black" style="background-color: white">
+                        <option value="@Color.Black" style="background-color: black"></option>
+                        <option value="@Color.Blue" style="background-color: blue;"></option>
+                        <option value="@Color.Green" style="background-color: green;"></option>
+                        <option value="@Color.Orange" style="background-color: orange;"></option>
+                        <option value="@Color.Pink" style="background-color: pink;"></option>
+                        <option value="@Color.Purple" style="background-color: purple;"></option>
+                        <option value="@Color.White" style="background-color: white;"></option>
+                        <option value="@Color.Yellow" style="background-color: yellow;"></option>
+                    </select>
+                    <button class="button button-yellow button-image-revert"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                        width="100" height="100"
+                        viewBox="0 0 172 172"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M86,6.88c-43.62952,0 -79.12,35.49048 -79.12,79.12c0,43.62952 35.49048,79.12 79.12,79.12c43.62952,0 79.12,-35.49048 79.12,-79.12c0,-43.62952 -35.49048,-79.12 -79.12,-79.12zM110.08,89.44h-20.64v20.64c0,1.90232 -1.53768,3.44 -3.44,3.44c-1.90232,0 -3.44,-1.53768 -3.44,-3.44v-20.64h-20.64c-1.90232,0 -3.44,-1.53768 -3.44,-3.44c0,-1.90232 1.53768,-3.44 3.44,-3.44h20.64v-20.64c0,-1.90232 1.53768,-3.44 3.44,-3.44c1.90232,0 3.44,1.53768 3.44,3.44v20.64h20.64c1.90232,0 3.44,1.53768 3.44,3.44c0,1.90232 -1.53768,3.44 -3.44,3.44z"></path></g></g></svg></button>
+                </div>
+            </li>
+        </ul>
+        <div class="contextmenu contextmenu-hide">
+            <span class="icon-close">&times;</span>
+            <button class="button button-green">Edit</button>
+            <button class="button button-red">Delete</button>
+        </div>
+    </nav>
+    <main>
+        <h1>Сьогодні</h1>
+        <div class="content">
+            <div class="task-container task-add task-white">
+                <div class="task">
+                    <input type="text" placeholder="Введіть завдання" />
+                </div>
+                <div class="controls-task">
+                    <button class="button button-yellow datepicker_my">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+width="50" height="50"
+viewBox="0 0 172 172"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M41.28,0c-3.76014,0 -6.88,3.11986 -6.88,6.88v6.88h-20.64c-3.98696,0 -6.88,2.89304 -6.88,6.88v24.08h158.24v-24.08c0,-3.98696 -2.89304,-6.88 -6.88,-6.88h-20.64v-6.88c0,-3.76014 -3.11986,-6.88 -6.88,-6.88h-6.88c-3.76014,0 -6.88,3.11986 -6.88,6.88v6.88h-61.92v-6.88c0,-3.76014 -3.11986,-6.88 -6.88,-6.88zM41.28,6.88h6.88v20.64h-6.88zM123.84,6.88h6.88v20.64h-6.88zM6.88,51.6v106.64c0,3.98696 2.89304,6.88 6.88,6.88h119.76172c1.44995,1.50975 3.09998,2.82593 4.92485,3.88344c0.00224,0 0.00448,0 0.00672,0c3.28898,1.90039 7.12134,2.99656 11.18672,2.99656c12.30717,0 22.36,-10.05283 22.36,-22.36c0,-6.30671 -2.64973,-12.01135 -6.88,-16.08469v-81.95531zM41.28,72.24h17.2v17.2h-17.2zM65.36,72.24h17.2v17.2h-17.2zM89.44,72.24h17.2v17.2h-17.2zM113.52,72.24h17.2v17.2h-17.2zM41.28,96.32h17.2v17.2h-17.2zM65.36,96.32h17.2v17.2h-17.2zM89.44,96.32h17.2v1.18922c-6.91587,1.89432 -12.91541,5.99677 -17.2,11.51594zM113.52,96.32h1.72h15.48v3.91031c-4.61125,-2.49306 -9.88452,-3.91031 -15.48,-3.91031c-0.58091,0 -1.14641,0.05719 -1.72,0.08735zM115.24,103.2c14.2897,0 25.8,11.51031 25.8,25.8c0,14.28969 -11.5103,25.8 -25.8,25.8c-14.2897,0 -25.8,-11.51031 -25.8,-25.8c0,-14.28969 11.5103,-25.8 25.8,-25.8zM109.03187,114.93765l-2.78156,15.62781h5.16672c0.5676,-0.78432 1.76079,-2.26422 4.32015,-2.26422c0.91504,0 4.88453,0.35797 4.88453,5.29438c0,1.75096 -1.04205,5.44219 -4.88453,5.44219c-3.57416,0 -4.50849,-2.94953 -4.64265,-4.23953h-5.73781c-0.05504,3.39528 2.39333,8.9225 10.50141,8.9225c7.70216,0 10.49469,-6.40307 10.49469,-10.12515c0,-1.95392 -1.0291,-9.61453 -8.72094,-9.61453c-3.2508,0 -4.75209,1.40271 -5.52953,2.18359l-0.08735,-0.08734l1.12875,-6.40969h11.67719v-4.73zM41.28,120.4h17.2v17.2h-17.2zM65.36,120.4h17.2v17.2h-17.2zM149.64,134.16c8.58739,0 15.48,6.89261 15.48,15.48c0,8.58739 -6.89261,15.48 -15.48,15.48c-2.83526,0 -5.46306,-0.75665 -7.74672,-2.0761c-3.13126,-1.81714 -5.54896,-4.71857 -6.79265,-8.16328c6.42876,-4.94715 10.96179,-12.20924 12.34234,-20.53922c0.72241,-0.10126 1.45376,-0.1814 2.19703,-0.1814z"></path></g></g></svg>
+                    </button>
+                    <button class="button button-yellow timepicker_my"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                        width="100" height="100"
+                        viewBox="0 0 172 172"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M86,6.88c-43.62952,0 -79.12,35.49048 -79.12,79.12c0,43.62952 35.49048,79.12 79.12,79.12c43.62952,0 79.12,-35.49048 79.12,-79.12c0,-43.62952 -35.49048,-79.12 -79.12,-79.12zM86,96.32c-1.58928,0 -3.0788,-0.38872 -4.42384,-1.032l-20.66408,20.66408c-0.6708,0.6708 -1.55144,1.00792 -2.43208,1.00792c-0.88064,0 -1.76128,-0.33712 -2.43208,-1.00792c-1.34504,-1.34504 -1.34504,-3.51912 0,-4.86416l20.66408,-20.66408c-0.64328,-1.34504 -1.032,-2.83456 -1.032,-4.42384c0,-4.48576 2.87928,-8.26632 6.88,-9.68704v-48.79296c0,-1.90232 1.53768,-3.44 3.44,-3.44c1.90232,0 3.44,1.53768 3.44,3.44v48.79296c4.00072,1.42072 6.88,5.20128 6.88,9.68704c0,5.70008 -4.61992,10.32 -10.32,10.32z"></path></g></g></svg></button>
+                    <select class="button button-black" style="background-color: white">
+                        <option value="@Color.Black" style="background-color: black"></option>
+                        <option value="@Color.Blue" style="background-color: blue;"></option>
+                        <option value="@Color.Green" style="background-color: green;"></option>
+                        <option value="@Color.Orange" style="background-color: orange;"></option>
+                        <option value="@Color.Pink" style="background-color: pink;"></option>
+                        <option value="@Color.Purple" style="background-color: purple;"></option>
+                        <option value="@Color.White" style="background-color: white;"></option>
+                        <option value="@Color.Yellow" style="background-color: yellow;"></option>
+                    </select>
+                    <button class="button button-yellow"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                        width="60" height="60"
+                        viewBox="0 0 172 172"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M86,17.2c-6.33533,0 -11.46667,5.13133 -11.46667,11.46667v1.50052c-19.76997,5.10025 -34.4,23.004 -34.4,44.36615v13.72864c0,9.116 -1.8722,18.07416 -5.3638,26.40469h102.46094c-3.4916,-8.3248 -5.3638,-17.28869 -5.3638,-26.40469v-13.72864c0,-21.36214 -14.63003,-39.26589 -34.4,-44.36615v-1.50052c0,-6.33533 -5.13133,-11.46667 -11.46667,-11.46667zM28.66667,126.13333c-2.06765,-0.02924 -3.99087,1.05709 -5.03322,2.843c-1.04236,1.78592 -1.04236,3.99474 0,5.78066c1.04236,1.78592 2.96558,2.87225 5.03322,2.843h41.14114c-0.65925,1.83997 -1.00007,3.77884 -1.00781,5.73333c0,9.4993 7.7007,17.2 17.2,17.2c9.4993,0 17.2,-7.7007 17.2,-17.2c-0.00415,-1.95384 -0.34118,-3.8927 -0.99661,-5.73333h41.12995c2.06765,0.02924 3.99087,-1.05709 5.03322,-2.843c1.04236,-1.78592 1.04236,-3.99474 0,-5.78066c-1.04236,-1.78592 -2.96558,-2.87225 -5.03322,-2.843h-57.33333z"></path></g></g></svg></button>
+                    <button class="button button-blue button-image-revert"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                        width="100" height="100"
+                        viewBox="0 0 172 172"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M86,6.88c-43.62952,0 -79.12,35.49048 -79.12,79.12c0,43.62952 35.49048,79.12 79.12,79.12c43.62952,0 79.12,-35.49048 79.12,-79.12c0,-43.62952 -35.49048,-79.12 -79.12,-79.12zM110.08,89.44h-20.64v20.64c0,1.90232 -1.53768,3.44 -3.44,3.44c-1.90232,0 -3.44,-1.53768 -3.44,-3.44v-20.64h-20.64c-1.90232,0 -3.44,-1.53768 -3.44,-3.44c0,-1.90232 1.53768,-3.44 3.44,-3.44h20.64v-20.64c0,-1.90232 1.53768,-3.44 3.44,-3.44c1.90232,0 3.44,1.53768 3.44,3.44v20.64h20.64c1.90232,0 3.44,1.53768 3.44,3.44c0,1.90232 -1.53768,3.44 -3.44,3.44z"></path></g></g></svg></button>
+                </div>
+            </div>
+            <div class="task-container task-containet-space-beetween task-green">
+                <div class="task">
+                    Text task фівфі ів в іф фві іф фв ф іф фів длф лдфів лфі фідв флі вділф фідл іф 
+                </div>
+                <div class='time-task'>17 Березня 2020 14:26</div>
+            </div>
+            <div class="task-container task-containet-space-beetween task-yellow">
+                <div class="task">
+                    Text task
+                </div>
+                <div class='time-task'>17 Березня 2020 14:26</div>
+            </div>
+            <div class="task-container task-containet-space-beetween task-blue">
+                <div class="task">
+                    Text task
+                </div>
+                <div class='time-task'>17 Березня 2020 14:26</div>
+            </div>
+            <div class="task-container task-containet-space-beetween task-orange">
+                <div class="task">
+                    Text task
+                </div>
+                <div class='time-task'>17 Березня 2020 14:26</div>
+            </div>
+            <div class="task-container task-containet-space-beetween task-pink">
+                <div class="task">
+                    Text task
+                </div>
+                <div class='time-task'>17 Березня 2020 14:26</div>
+            </div>
+            <div class="task-container task-containet-space-beetween task-white">
+                <div class="task">
+                    Text task
+                </div>
+                <div class='time-task'>17 Березня 2020 14:26</div>
+            </div>
+            <div class="task-container task-containet-space-beetween task-black">
+                <div class="task">
+                    Text task
+                </div>
+                <div class='time-task'>17 Березня 2020 14:26</div>
+            </div>
+            <div class="task-container task-containet-space-beetween task-red">
+                <div class="task">
+                    Text task
+                </div>
+                <div class='time-task'>17 Березня 2020 14:26</div>
+            </div>
+        </div>
+    </main>
+
+    <script src="materialize.min.js"></script>
+    <script>
+         document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.datepicker_my');
+
+            var instances = M.Datepicker.init(elems, {
+                i18n:{
+                    months: ['Січень','Лютий','Березень','Квітень','Травень','Червень','Липень','Серпень',
+                                    'Вересень','Жовтень','Листопад','Грудень'],
+                    monthsShort:   ['Січ','Лют','Бер','Кві','Тра','Чер','Лип','Сер','Вер','Жов','Лис','Гру'],
+                    weekDays:      ['Неділя', 'Понеділок','Вівторок','Середа','Четвер','Пятниця','Субота'],
+                    weekdaysShort:  ['Нед','Пон','Вів','Сер','Чет','Пят','Суб'],
+                    weekdaysAbbrev: ['Нд','Пд','Вт','Ср','Чт','Пн','Сб'],
+                    cancel: 'Відміна',
+                    clear: 'Очистити',
+                    done: 'Ок'
+                },
+                showClearBtn:true
+            });
+
+            var elemstime = document.querySelectorAll('.timepicker_my');
+            var instancestime = M.Timepicker.init(elemstime, {
+                i18n:{
+                    cancel: 'Відміна',
+                    clear: 'Очистити',
+                    done: 'Ок'
+                },
+                twelveHour: false,
+                showClearBtn:true
+            });
+
+            var openMenu = false;
+            var toggleMenu = document.querySelectorAll('.toggle-menu');
+            toggleMenu[0].addEventListener("click", function(){
+                if(openMenu)
+                {
+                    document.getElementsByTagName('nav')[0].classList.remove("open-nav");
+                    document.getElementsByTagName('nav')[0].classList.add("close-nav");
+                    openMenu=false;
+                }
+                else{
+                    document.getElementsByTagName('nav')[0].classList.remove("close-nav");
+                    document.getElementsByTagName('nav')[0].classList.add("open-nav");
+                    openMenu=true;
+                }
+            })
+        });
+
+    </script>
+</body>
+</html>

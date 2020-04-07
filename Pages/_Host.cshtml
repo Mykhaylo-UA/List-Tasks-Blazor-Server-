@@ -1,0 +1,98 @@
+﻿@page "/"
+@namespace TaskLists.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task List</title>
+    <base href="~/" />
+    <link href="~/materialize.css" rel="stylesheet" />
+    <link href="~/style.css" rel="stylesheet" />
+    <script src="~/materialize.js"></script>
+    <script>
+        window.addEventToggle = () => {
+            var openMenu = false;
+            var toggleMenu = document.querySelectorAll('.toggle-menu');
+            toggleMenu[0].addEventListener("click", function () {
+                if (openMenu) {
+                    document.getElementsByTagName('nav')[0].classList.remove("open-nav");
+                    document.getElementsByTagName('nav')[0].classList.add("close-nav");
+                    openMenu = false;
+                }
+                else {
+                    document.getElementsByTagName('nav')[0].classList.remove("close-nav");
+                    document.getElementsByTagName('nav')[0].classList.add("open-nav");
+                    openMenu = true;
+                }
+            });
+           
+        };
+
+        window.materializeMethods = () => {
+            var elems = document.querySelectorAll('.datepicker_my');
+
+            var instances = M.Datepicker.init(elems, {
+                format: 'dd/mm/yyyy',
+                i18n: {
+                    months: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень',
+                        'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
+                    monthsShort: ['Січ', 'Лют', 'Бер', 'Кві', 'Тра', 'Чер', 'Лип', 'Сер', 'Вер', 'Жов', 'Лис', 'Гру'],
+                    weekDays: ['Неділя', 'Понеділок', 'Вівторок', 'Середа', 'Четвер', 'Пятниця', 'Субота'],
+                    weekdaysShort: ['Нед', 'Пон', 'Вів', 'Сер', 'Чет', 'Пят', 'Суб'],
+                    weekdaysAbbrev: ['Нд', 'Пд', 'Вт', 'Ср', 'Чт', 'Пн', 'Сб'],
+                    cancel: 'Відміна',
+                    clear: 'Очистити',
+                    done: 'Ок'
+                },
+                showClearBtn: false,
+                onSelect: function () {
+                    DotNet.invokeMethodAsync('TaskLists', 'setDate', ""+instances);
+                }
+            });
+            window.getDate = () => {
+                return instances;
+            };
+            
+
+            var elemstime = document.querySelectorAll('.timepicker_my');
+            var instancestime = M.Timepicker.init(elemstime, {
+                i18n: {
+                    cancel: 'Відміна',
+                    clear: 'Очистити',
+                    done: 'Ок'
+                },
+                twelveHour: false,
+                showClearBtn: false,
+                onSelect: function () {
+                    console.log(instancestime[0].hours);
+                    DotNet.invokeMethodAsync('TaskLists', 'setTime', "" + instancestime[0].hours, "" + instancestime[0].minutes);
+                }
+            });
+        };
+
+    </script>
+</head>
+<body>
+    <app>
+        <component type="typeof(App)" render-mode="ServerPrerendered" />
+    </app>
+
+    <div id="blazor-error-ui">
+        <environment include="Staging,Production">
+            An error has occurred. This application may no longer respond until reloaded.
+        </environment>
+        <environment include="Development">
+            An unhandled exception has occurred. See browser dev tools for details.
+        </environment>
+    </div>
+
+    <script src="_framework/blazor.server.js"></script>
+
+</body>
+</html>

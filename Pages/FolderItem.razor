@@ -1,0 +1,146 @@
+﻿@page "/folder"
+@page "/folder/{Id:int}"
+
+@inject TaskLists.Data.ItemService Service
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using TaskLists.Data
+@using TaskLists.Pages
+@inject IJSRuntime JSRuntime;
+
+@if (folder == null)
+{
+    <h1>Такого списка не існує</h1>
+}
+else if (folder.Id == -1)
+{
+    <h1>Немає доступа до даного списка</h1>
+}
+else
+{
+    <h1>@folder.Name</h1>
+    @foreach (Item it in folder.Items)
+    {
+        <ItemComponent Item="it" EventCallback="@(e=> SaveItem(e, it))" EventCallbackRight="@(e => OnRightClickItem(e, it))"></ItemComponent>
+    }
+    <AddItemComponent Item="newItem" Callback="NewItem"></AddItemComponent>
+
+    <div class="contextmenu @(hideOrShowItem ? "contextmenu-show" : "contextmenu-hide")" style="@styleForContextMenuItem">
+        <span class="icon-close" @onclick="HideContextMenuItem">&times;</span>
+        <button class="button button-green" @onclick="@(e => EditItem(e, itemClick))">Edit</button>
+        <button class="button button-red" @onclick="@(e => DeleteItem(e, itemClick))">Delete</button>
+    </div>
+}
+
+@code{
+    [Parameter]
+    public int Id { get; set; } = -1;
+
+    public static Item newItem = new Item() { Date = DateTime.Now, Time = DateTime.Now, IsNotificationTelegram = true };
+    private Folder folder;
+
+    private Item itemClick;
+    private string styleForContextMenuItem = string.Empty;
+    private bool hideOrShowItem = false;
+
+    AuthenticationState authState;
+    System.Security.Claims.ClaimsPrincipal user;
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("materializeMethods");
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    [JSInvokable("setDate")]
+    public static async void SetDate(string instances)
+    {
+        newItem.Date = DateTime.Parse(instances);
+    }
+    [JSInvokable("setTime")]
+    public static async void SetTime(string hour, string minutes)
+    {
+        newItem.Time = new DateTime(2000, 1, 1, Int32.Parse(hour), Int32.Parse(minutes), 0);
+    }
+    private async Task<DateTime> GetDate()
+    {
+        string s = await JSRuntime.InvokeAsync<string>("getDate");
+        DateTime a = new DateTime();
+        DateTime.TryParse(s, out a);
+        await JSRuntime.InvokeVoidAsync("alert(getDate);");
+        return a;
+    }
+
+    protected async override Task OnInitializedAsync()
+    {
+        authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        user = authState.User;
+        if (user.Identity.Name == null) return;
+        folder = await Service.GetFolderAndItemsAsync(Id, user.Identity.Name);
+    }
+
+    private async Task RefreshFolder()
+    {
+        folder = await Service.GetFolderAndItemsAsync(Id, user.Identity.Name);
+    }
+    private void HideContextMenuItem(MouseEventArgs args)
+    {
+        hideOrShowItem = false;
+    }
+    private void OnRightClickItem(MouseEventArgs args, Item item)
+    {
+        if (args.Button == 2)
+        {
+            itemClick = item;
+            styleForContextMenuItem = $"top: {args.ClientY}px; left:{args.ClientX}px;";
+            hideOrShowItem = true;
+        }
+    }
+
+    private void EditItem(MouseEventArgs args, Item item)
+    {
+        item.StatusModel = StatusModel.Edit;
+        hideOrShowItem = false;
+
+    }
+    private async void DeleteItem(MouseEventArgs args, Item item)
+    {
+        await Service.DeleteItem(item);
+        hideOrShowItem = false;
+        await RefreshFolder();
+    }
+    private async void SaveItem(MouseEventArgs args, Item item)
+    {
+        await Service.EditItem(item);
+        item.StatusModel = StatusModel.Static;
+    }
+
+
+
+
+    private async Task NewItem()
+    {
+        bool result = await Service.AddItem(newItem, Id);
+        if (result)
+        {
+            newItem = new Item() { Date = DateTime.Now, Time = DateTime.Now, IsNotificationTelegram = true };
+            await RefreshFolder();
+        }
+    }
+
+    public async override Task SetParametersAsync(ParameterView parameters)
+    {
+        IReadOnlyDictionary<string, object> dic = parameters.ToDictionary();
+        if (Id != dic["Id"] as int?)
+        {
+            await base.SetParametersAsync(parameters);
+            await RefreshFolder();
+        }
+
+        await base.SetParametersAsync(parameters);
+    }
+
+}

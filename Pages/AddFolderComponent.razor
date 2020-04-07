@@ -1,0 +1,26 @@
+﻿@using TaskLists.Data
+
+    <div style="margin: 0;" class="container-fluid row justify-content-center flex-row">
+        <input type="text" placeholder="Назва папки" class="form-control col-lg-10" @bind="folder.Name" />
+        <select class="col-lg-1 form-control" @bind="folder.Color" style="background-color: @folder.Color">
+            <option value="@Color.Black" style="background-color: @(Color.Black);">Black</option>
+            <option value="@Color.Blue" style="background-color: @(Color.Blue);">Blue</option>
+            <option value="@Color.Green" style="background-color: @(Color.Green);">Green</option>
+            <option value="@Color.Orange" style="background-color: @(Color.Orange);">Orange</option>
+            <option value="@Color.Pink" style="background-color: @(Color.Pink);">Pink</option>
+            <option value="@Color.Purple" style="background-color: @(Color.Purple);">Purple</option>
+            <option value="@Color.White" style="background-color: @(Color.White);">White</option>
+            <option value="@Color.Yellow" style="background-color: @(Color.Yellow);">Yellow</option>
+        </select>
+        <input type="submit" value="+" class="btn btn-primary col-lg-1 text-center" style="padding:0;" @onclick="OnClickCallback" />
+    </div>
+
+@code{
+    [Parameter]
+    public Folder folder {get;set;}
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
+
+
+}

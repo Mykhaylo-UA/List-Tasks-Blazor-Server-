@@ -1,0 +1,26 @@
+﻿@using TaskLists.Data
+
+@if(Item.StatusModel == StatusModel.Static)
+{
+     <div oncontextmenu="return false;" @onmousedown="EventCallbackRight" class="task-container task-containet-space-beetween @("task-"+Item.Color.ToString().ToLower())">
+        <div class="task">
+            @Item.Text 
+        </div>
+        <div class='time-task'>@Item.Date.Date.ToLongDateString() @Item.Time.ToLongTimeString()</div>
+    </div>
+}
+else if(Item.StatusModel == StatusModel.Edit)
+{
+    <TaskLists.Pages.AddItemComponent Item="Item" Callback="EventCallback"></TaskLists.Pages.AddItemComponent>
+}
+
+@code{
+    [Parameter]
+    public Item Item { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> EventCallback { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> EventCallbackRight { get; set; }
+}

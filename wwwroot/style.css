@@ -1,0 +1,511 @@
+﻿/*colors: yellow- EEFA00 |   black- 1C1B1B  */
+select{ /*remove metarialize seelct*/
+    display: block;
+}
+
+body {
+    padding:0;
+    margin:0;
+}
+header {
+    background-color: #1C1B1B;
+    width: 100%;
+    height: 60px;
+    box-shadow: 0 0 10px 5px #EEFA00;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+.authorization{
+    position: absolute;
+    right: 5%;
+}
+.toggle-menu{
+    width:50px;
+    height:40px;
+    display:none;
+    float:left;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+}
+.toggle-menu > span{
+    height: 4px;
+    width: 80%;
+    background-color: #EEFA00;
+}
+
+.logo_header{
+    font-family: 'Sitka Text';
+    height: 100%;
+    width: 20%;
+    font-size:1.3em;
+    text-align: center;
+    vertical-align: middle;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo_header > a{
+    text-decoration: none;
+    color: #EEFA00;
+}
+
+nav{
+    float: left;
+    height: calc(100vh - 60px);
+    width: 300px;
+    background-color: #1C1B1B;
+    box-shadow: inset 0 0 5px 3px #EEFA00;
+    transition: 0.5s;
+}
+nav > ul{
+    margin:0;
+    padding: 0;
+    width: 100%;
+    height:100%;
+    display:flex;
+    flex-direction: column;
+    list-style-type: none;
+    justify-content: start;
+    align-items: center;
+}
+nav > ul > li{
+    width: 90%;
+    min-height: 50px;
+    height: auto;
+    margin: 5px 0;
+    border-radius: 4px;
+    background-color: rgb(34, 33, 33);
+    color:white;
+    transition: 0.5s;
+    text-align: center;
+}
+nav > ul > li:nth-child(1){
+    margin-top: 15px;
+}
+nav > ul > li > a:hover{
+    background-color: #EEFA00;
+    color:black;
+}
+nav > ul > li > a{
+    font-family: 'Sitka Text';
+    display: flex;
+    width:100%;
+    height: 100%;
+    text-decoration: none;
+    color:inherit;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    border-radius: 4px;
+    transition: 0.5s;
+}
+
+.open-nav{
+    left: 0;
+}
+.close-nav{
+    left: -300px;
+}
+.addFolder > *{
+    margin: 0 1px;
+}
+.addFolder{
+    width:100%;
+    height: 50px;
+    display:flex;
+}
+.addFolder input{
+    width: 60%;
+    border:none;
+    border-radius: 5px;
+}
+.addFolder select,
+.addFolder button{
+    width: 20%;
+}
+.addFolder select{
+    border:none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-image: url(http://img.icons8.com/ios-filled/100/000000/color-dropper.png);
+    background-repeat: no-repeat;
+    background-position: 30% 50%;
+    background-size: 30%;
+}
+
+
+.contextmenu{
+    width: 150px;
+    position: absolute;
+    z-index: 100;
+    top: 50%;
+    left: 5%;
+    display: flex;
+    flex-direction: column;
+    background-color: #1C1B1B;
+    box-shadow: 0 0 10px 1px white;
+    border-radius: 5px;
+    padding: 5px;
+}
+.contextmenu-show{
+    display:flex;
+}
+.contextmenu-hide{
+    display:none;
+}
+.contextmenu > .button{
+    margin: 3px 0;
+}
+.button{
+    padding: 5px 5px;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.button svg{
+    display: block;
+    height: 100%;
+    margin: auto;
+    width: 100%;
+}
+.button:hover{
+    filter: opacity(75%);
+}
+.button-image-revert > img{
+    filter: hue-rotate(10deg);
+}
+
+.icon-close{
+    position: relative;
+    left: 90%;
+    width: min-content;
+    font-size: 1.3em;
+    color:white;
+    font-weight: bolder;
+    margin: 0;
+    cursor: pointer;
+    transition: 0.3s;
+    line-height: 20px;
+}
+.icon-close:hover{
+    color: yellow;
+}
+main{
+    width: calc(100% - 300px);
+    float: right;
+}
+main > h1{
+    margin-left: 5%;
+}
+
+.content{
+    padding: 0 10px;
+}
+
+.datepicker-date-display{
+    background-color: #1C1B1B;
+    color: #EEFA00;
+}
+.datepicker-table td.is-selected
+{
+    background-color: #EEFA00;
+    color: #1C1B1B;
+}
+.datepicker-table td.is-today
+{
+    color: #EEFA00;
+}
+.datepicker-cancel, .datepicker-clear, .datepicker-today, .datepicker-done{
+    color: #1C1B1B;
+}
+.month-prev:focus,
+.month-next:focus{
+    background-color: #EEFA00;
+}
+
+.timepicker-digital-display{
+    background-color: #1C1B1B;
+}
+.timepicker-tick.active, .timepicker-tick:hover{
+    background-color: #EEFA00;
+}
+.timepicker-canvas line{
+    stroke: #EEFA00;
+}
+.timepicker-canvas-bg{
+    fill: #EEFA00;
+}
+.timepicker-canvas-bearing{
+    fill: #EEFA00;
+}
+.timepicker-close{
+    color: #1C1B1B;
+}
+.datepicker-calendar-container select{
+    display: none;
+}
+.datepicker-table td.is-today ~ is-selected{
+    color: #1C1B1B;
+}
+.datepicker-footer{
+    display:flex;
+    justify-content: space-between;
+}
+
+.datepicker-footer button:nth-child(1)
+{
+    background-color: rgb(73, 73, 73);
+    border: 2px solid black;
+    color:white;
+    border-radius: 4px;
+    padding: 2px 5px;
+    cursor: pointer;
+}
+.datepicker-footer button:nth-child(2)
+{
+    background-color: rgb(252, 252, 70);
+    border: 2px solid yellow;
+    padding: 2px 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.confirmation-btns button{
+    margin: 0 5px;
+}
+.timepicker-footer button:nth-child(1)
+{
+    background-color: rgb(73, 73, 73);
+    border: 2px solid black;
+    color:white;
+    border-radius: 4px;
+    padding: 2px 5px;
+    cursor: pointer;
+}
+.timepicker-footer button:nth-child(2)
+{
+    background-color: rgb(252, 252, 70);
+    border: 2px solid yellow;
+    padding: 2px 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.task-container{
+    width: 100%;
+    min-height: 50px;
+    height:auto;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    padding: 0 10px;
+    margin: 1px 0;
+    justify-content: space-between;
+}
+.task-green{
+    background-color: rgb(0, 168, 0);
+    border: 2px solid green;
+    color:white;
+}
+.task-yellow{
+    background-color: rgb(252, 252, 70);
+    border: 2px solid yellow;
+}
+.task-orange{
+    background-color: rgb(255, 191, 73);
+    border: 2px solid orange;
+}
+.task-blue{
+    background-color: rgb(72, 72, 255);
+    border: 2px solid blue;
+    color:white;
+}
+.task-purple{
+    background-color: rgb(202, 2, 202);
+    border: 2px solid purple;
+    color:white;
+}
+.task-pink{
+    background-color: pink;
+    border: 2px solid rgb(255, 143, 162);
+}
+.task-white{
+    background-color: white;
+    border: 2px solid rgb(221, 221, 221);
+}
+.task-black{
+    background-color: rgb(73, 73, 73);
+    border: 2px solid black;
+    color:white;
+}
+.task-red{
+    background-color: rgb(253, 57, 57);
+    border: 2px solid red;
+    color:white;
+}
+
+.button-green{
+    background-color: rgb(0, 168, 0);
+    border: 2px solid green;
+    color:white;
+}
+.button-green  svg,
+.button-purple  svg,
+.button-blue  svg,
+.button-black  svg,
+.button-red  svg,
+.button-green g,
+.button-purple g,
+.button-blue  g,
+.button-black  g,
+.button-red g{
+    fill:white;
+}
+.button-yellow  svg,
+.button-orange  svg,
+.button-pink  svg,
+.button-white  svg,
+.button-yellow g,
+.button-orange g,
+.button-pink g,
+.button-white g
+{
+    fill:black;
+}
+.button-yellow{
+    background-color: rgb(252, 252, 70);
+    border: 2px solid yellow;
+}
+.button-orange{
+    background-color: rgb(255, 191, 73);
+    border: 2px solid orange;
+}
+.button-blue{
+    background-color: rgb(72, 72, 255);
+    border: 2px solid blue;
+    color:white;
+}
+.button-purple{
+    background-color: rgb(202, 2, 202);
+    border: 2px solid purple;
+    color:white;
+}
+.button-pink{
+    background-color: pink;
+    border: 2px solid rgb(255, 143, 162);
+}
+.button-white{
+    background-color: white;
+    border: 2px solid rgb(221, 221, 221);
+}
+.button-black{
+    background-color: rgb(73, 73, 73);
+    border: 2px solid black;
+    color:white;
+}
+.button-red{
+    background-color: rgb(253, 57, 57);
+    border: 2px solid red;
+    color:white;
+}
+
+
+.task{
+    width: calc(100% - 5 * 55px);
+    min-height: 45px;
+    height: auto;
+    display:flex;
+    align-items: center;
+}
+.task >input{
+    width: 100%;
+    height: 100%;
+    border:none;
+}
+
+.controls-task{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    min-height: 40px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: auto;
+}
+
+.controls-task input{
+    border:none;
+    height: 100%;
+    background-color: transparent;
+    padding: 0 5px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.controls-task input:hover{
+    filter: opacity(75%);
+}
+.controls-task select{
+    height: 100%;
+    width: 60px;
+    border:none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-image: url(http://img.icons8.com/ios-filled/100/000000/color-dropper.png);
+    background-repeat: no-repeat;
+    background-position: 30% 50%;
+    background-size: 30%;
+}
+.controls-task select:hover{
+    filter: opacity(75%);
+}
+.controls-task > button{
+    margin: 0 5px;
+    height: 40px;
+}
+
+.task-containet-space-beetween{
+    justify-content: space-between;
+}
+
+@media (max-width:1200px) {
+    nav{
+        position: fixed;
+        left: -300px;
+        z-index: 90;
+    }
+    
+    main{
+        width: 100%;
+    }
+    .toggle-menu{
+        display:flex;
+    }
+}
+@media (max-width:700px) {
+    .task-add{
+        flex-direction: column;
+        min-height: 50px;
+        height:auto;
+    }
+    .task {
+        width: 100%;
+    }
+    .time-task{
+        text-align: end;
+    }
+    .logo_header{
+        display:none;
+    }
+}
+@media (max-width:310px) {
+    .controls-task{
+        margin: 0 -5px;
+        padding:0;
+    }
+}

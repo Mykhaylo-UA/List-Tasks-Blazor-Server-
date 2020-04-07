@@ -1,0 +1,123 @@
+﻿@inject TaskLists.Data.ItemService Service
+@using Microsoft.AspNetCore.Components.Authorization;
+@inject AuthenticationStateProvider AuthenticationStateProvider;
+@using TaskLists.Data
+@using TaskLists.Pages
+@inject IJSRuntime JSRuntime;
+
+<header>
+    <div class="toggle-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="logo_header"><a href="#">TogeFun</a></div>
+
+    <div class="authorization">
+        <LoginDisplay />
+    </div>
+</header>
+
+<nav>
+    <ul>
+        @foreach (var folder in folders)
+        {
+            <FolderComponent folder="folder" OnClickCallbackRight="(e => OnRightClick(e, folder))" OnClickCallback="(e => SaveFolder(e, folder))"></FolderComponent>
+        }
+
+        <FolderComponent Folder="@folderNew" OnClickCallback="AddFolder" />
+    </ul>
+</nav>
+
+<div class="contextmenu @(hideOrShow ? "contextmenu-show" : "contextmenu-hide")" slyte="@styleForContextMenu">
+    <span class="icon-close" @onclick="HideContextMenu"> &times;</span>
+    <button class="button button-green" @onclick="@(e => EditFolder(e, folderClick))">Edit</button>
+    <button class="button button-red" @onclick="@(e => DeleteFolder(e, folderClick))">Delete</button>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+    private Folder folderClick;
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private Folder folderNew = new Folder() { StatusModel = StatusModel.New };
+    private List<Folder> folders = new List<Folder>();
+    private bool hideOrShow = false;
+
+    private string styleForContextMenu = string.Empty;
+
+    protected async override Task OnInitializedAsync()
+    {
+        try
+        {
+            var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+            var user = authState.User;
+            if (user.Identity.Name == null) return;
+            folders = Service.GetFolders(user.Identity.Name).ToList();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+    }
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("addEventToggle");
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    private void Close(MouseEventArgs e)
+    {
+        return;
+    }
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    private async Task AddFolder(MouseEventArgs e)
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        bool result = await Service.AddFolder(folderNew, user.Identity.Name);
+        if (result)
+        {
+            folders = Service.GetFolders(user.Identity.Name).ToList();
+            folders.ForEach(a => a.StatusModel = StatusModel.Static);
+            folderNew = new Folder() { StatusModel = StatusModel.New };
+        }
+    }
+    private void OnRightClick(MouseEventArgs args, Folder folder)
+    {
+        if (args.Button == 2)
+        {
+            folderClick = folder;
+            styleForContextMenu = $"top: {args.ClientY}px; left:{args.ClientX}px;";
+            hideOrShow = true;
+        }
+    }
+    private void HideContextMenu(MouseEventArgs args)
+    {
+        hideOrShow = false;
+    }
+    private void EditFolder(MouseEventArgs args, Folder folder)
+    {
+        folder.StatusModel = StatusModel.Edit;
+        hideOrShow = false;
+
+    }
+    private async void DeleteFolder(MouseEventArgs args, Folder folder)
+    {
+        await Service.DeleteFolder(folder);
+        hideOrShow = false;
+        folders.Remove(folder);
+    }
+    private async void SaveFolder(MouseEventArgs args, Folder folder)
+    {
+        await Service.EditFolder(folder);
+        folder.StatusModel = StatusModel.Static;
+    }
+}
